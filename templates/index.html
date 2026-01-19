@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSVTU Student Portal</title>
+
+<style>
+:root {
+    --primary: #1e40af;
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #1f2937;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: var(--card);
+    width: 100%;
+    max-width: 420px;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    color: var(--primary);
+}
+
+.header p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.field {
+    margin-top: 14px;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+input, select {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary);
+}
+
+.error {
+    margin-top: 10px;
+    padding: 8px;
+    background: #fee2e2;
+    color: #991b1b;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+button {
+    margin-top: 22px;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.95;
+}
+
+.footer-note {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 12px;
+    color: #6b7280;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="header">
+        <h2>CSVTU Student Portal</h2>
+        <p>Result & Admit Card Redirect</p>
+    </div>
+
+    <form method="post">
+
+        <div class="field">
+            <label>Roll Number</label>
+            <input type="text" name="roll" placeholder="Enter 12-digit Roll No" required>
+        </div>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <div class="field">
+            <label>Action</label>
+            <select name="action" required>
+                <option value="">Select</option>
+                <option value="result">View Result</option>
+                <option value="admit">View Admit Card</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Exam Type</label>
+            <select name="exam_type">
+                <option value="regular">Regular</option>
+                <option value="rtrv">RTRV</option>
+                <option value="backlog">Backlog</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Semester</label>
+            <select name="semester" required>
+                <option value="">Select Semester</option>
+                <option value="1 Semester">1 Semester</option>
+                <option value="2 Semester">2 Semester</option>
+                <option value="3 Semester">3 Semester</option>
+                <option value="4 Semester">4 Semester</option>
+                <option value="5 Semester">5 Semester</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Exam Session</label>
+            <select name="exam_session" required>
+                <option value="">Select Exam Session</option>
+                <option value="Apr-May 2024">Apr-May 2024</option>
+                <option value="Nov-Dec 2024">Nov-Dec 2024</option>
+                <option value="Apr-May 2025">Apr-May 2025</option>
+                <option value="Nov-Dec 2025">Nov-Dec 2025</option>
+            </select>
+        </div>
+
+        <button type="submit">Open Official Page</button>
+
+        <div class="footer-note">
+            Redirects to official CSVTU website
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
